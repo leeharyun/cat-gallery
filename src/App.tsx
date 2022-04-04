@@ -1,7 +1,8 @@
 import React from 'react';
-import Main from "./pages/Main";
+import Main from "./pages/main/Index";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
+import "./scss/common.scss";
 const App = () => {
     return (
         <BrowserRouter>
@@ -10,6 +11,6 @@ const App = () => {
           </Routes>
         </BrowserRouter>
     );
-}
+};
 
 export default App;
