@@ -18,6 +18,8 @@ time, mark, audio, video, input {
 }
 
 body {
+    display: block;
+    margin: 8px;
     max-width: 100%;
     min-height: 100%;
     background-color: #FFF;
@@ -114,23 +116,18 @@ header {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
         width: 100%;
         height: 100%;
+        margin-top: 32px;
 
         .image-container__item {
+            position: relative;
             display: block;
-            width: 250px;
-            padding: 15px;
-            margin: 10px;
-            flex: 1 1 auto;
-            border: 1px solid rgba(101, 106, 113, 0.2);
-            box-sizing: border-box;
+            width: 30%;
+            margin: 8px;
 
             a {
                 display: block;
-                width: 100%;
-                height: 100%;
 
                 img {
                     width: 100%;
@@ -141,40 +138,31 @@ header {
 
             .image-area {
                 width: 100%;
-                height: 250px;
                 margin-bottom: 8px;
-            }
 
-            .image-info {
-                display: block;
-                float: left;
-                width: 100%;
-                .image-info__name {
-                    float: left;
-                }
-                .image-info__like {
-                    float: right;
-                    
+                .cover {
+                    z-index: 1;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(90, 0, 10, 0.4);
+                    color: #fff;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+
                     &:hover {
-                        font-weight: 800;
-                    }
-
-                    i.like {
-                        display: inline-block;
-                        font-family: 'xeicon' !important;
-                        color: red;
-                        &:before {
-                            content: "\ea11";
-                        }
-                    }
-
-                    &.active {
-                        i.like:before {
-                            content: "\ea10";
-                        }
+                        opacity: 1;
                     }
                 }
             }
+
         }
     }
 }

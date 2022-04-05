@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CatGalleryResponseType } from "../type/catGalleryType";
 
 const API_CAT_GALLERY = process.env.REACT_APP_CAT_GALLERY_API_URL;
 
@@ -9,15 +10,16 @@ const baseApi = (apiUrl: string = "https://api.thecatapi.com") => {
         headers: {
             'Content-Type': 'application/json',
             'UserAgent':  "",
-            'UserType': '',
-            'AppVersion': '1.0.0'
+            'UserType': ''
         }
-    })
-}
+    });
+};
 
 
-const getGalleryList = baseApi(API_CAT_GALLERY).get("/v1/breeds");
+const getList = async (): Promise<Array<CatGalleryResponseType>> => {
+    const response: Array<CatGalleryResponseType> = await (await baseApi(API_CAT_GALLERY).get("/v1/breeds")).data;
+    
+    return response;
+};
 
-export default {
-    getGalleryList
-}
+export { getList };
