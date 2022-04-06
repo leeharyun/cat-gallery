@@ -8,9 +8,8 @@ const baseApi = (apiUrl: string = "https://api.thecatapi.com") => {
         baseURL: apiUrl,
         timeout: 5000,
         headers: {
-            'Content-Type': 'application/json',
-            'UserAgent':  "",
-            'UserType': ''
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache"
         }
     });
 };
