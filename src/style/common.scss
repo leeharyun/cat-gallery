@@ -166,3 +166,23 @@ header {
         }
     }
 }
+
+.loading-container {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($color: #FFF, $alpha: 0.5);
+
+    .loading-container__loading {
+        position: absolute;
+        display: inline;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

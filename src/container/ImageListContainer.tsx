@@ -2,10 +2,10 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGalleryList } from "../redux/modules/catGallery";
 import ImageList from "../component/ImageList";
-import { RootState, CatGalleryResponseType } from "../type/catGalleryType";
+import { RootState, CatGallery } from "../type/catGalleryType";
 
 const ImageListContainer = () => {
-    const imagesList = useSelector<RootState, Array<CatGalleryResponseType>>((state) => state.getGalleryList.list);
+    const { list: imagesList, loading } = useSelector<RootState, CatGallery>((state) => state.getGalleryList);
     
     const dispatch = useDispatch();
     
@@ -13,7 +13,7 @@ const ImageListContainer = () => {
         dispatch(getGalleryList());
     }, []);
     
-    return <ImageList getImageList={getImageList} imagesList={imagesList}/>
+    return <ImageList getImageList={getImageList} imagesList={imagesList} loading={loading} />
 };
 
 export default ImageListContainer;

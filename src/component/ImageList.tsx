@@ -1,16 +1,19 @@
 import { useEffect, useMemo } from 'react';
-import {CatGalleryResponseType} from "../type/catGalleryType";
+import {CatGalleryDataType} from "../type/catGalleryType";
+import Loading from './Loading';
 
 interface ImageListPops {
     getImageList: () => void;
-    imagesList: Array<CatGalleryResponseType>;
+    imagesList: Array<CatGalleryDataType>;
+    loading: boolean;
 };
 
-const ImageList = ({ getImageList, imagesList }: ImageListPops) => {
+const ImageList = ({ getImageList, imagesList, loading }: ImageListPops) => {
+    
     useEffect(() => {
         getImageList();    
     }, [getImageList]);
-
+    
     const renderImageList = useMemo(() => {
         return imagesList.map((item: any) => {
             const { image } = item;
@@ -31,6 +34,10 @@ const ImageList = ({ getImageList, imagesList }: ImageListPops) => {
     return (
         <section className="image-container">
             {renderImageList}
+            {
+                loading && 
+                <Loading type="spin" />
+            }
         </section>
     );
 };

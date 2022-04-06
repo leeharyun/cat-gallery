@@ -1,14 +1,8 @@
 import { Action, createActions, handleActions } from "redux-actions";
 import { takeEvery, put, call } from "redux-saga/effects";
-import { CatGalleryResponseType } from "../../type/catGalleryType";
+import { CatGalleryDataType } from "../../type/catGalleryType";
 import { getList } from "../../api/api";
 import { CatGallery } from "../../type/catGalleryType";
-
-// interface CatGallery {
-//     loading: boolean;
-//     error: Error | null;
-//     list: Array<CatGalleryResponseType>
-// };
 
 const initialState: CatGallery = {
     loading: false,
@@ -25,8 +19,8 @@ export const { pending, success, fail } = createActions(
     { prefix }
 );
 
-const reducer = handleActions<CatGallery, Array<CatGalleryResponseType>>({
-    PENDIG: (state) => ({
+const reducer = handleActions<CatGallery, Array<CatGalleryDataType>>({
+    PENDING: (state) => ({
         ...state,
         loading: true,
         error: null
@@ -34,12 +28,12 @@ const reducer = handleActions<CatGallery, Array<CatGalleryResponseType>>({
     SUCCESS: (state, action) => ({
         ...state,
         list: action.payload,
-        loading: true,
+        loading: false,
         error: null
     }),
     FAIL: (state, action: any) => ({
         ...state,
-        loading: true,
+        loading: false,
         error: action.payload
     })
 }, initialState, {prefix});
@@ -52,7 +46,7 @@ function* getGalleryListSaga() {
     try {
         yield put(pending());
         
-        const list: Array<CatGalleryResponseType> = yield call(getList);
+        const list: Array<CatGalleryDataType> = yield call(getList);
 
         yield put(success(list));
     } catch (error) {

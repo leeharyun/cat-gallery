@@ -1,9 +1,6 @@
 import Header from "./Header";
 import ImageListContainer from "../container/ImageListContainer";
 
-import '../style/main.scss';
-
-
 const Main =() => {
     const MainContent = () => {
         return (
